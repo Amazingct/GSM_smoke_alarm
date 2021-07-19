@@ -9,7 +9,7 @@ void send_sms(String msg)
 {
   mySerial.println("AT+CMGF=1"); // Configuring TEXT mode
   updateSerial();
-  mySerial.println("AT+CMGS=\"ZZxxxxxxxx\"");//change ZZ with country code and xxxxxxxxxxx with phone number to sms
+  mySerial.println("AT+CMGS=\"ZZXXXXXXXXXX\"");//change ZZ with country code and xxxxxxxxxxx with phone number to sms
   updateSerial();
   mySerial.print(msg); //text content
   updateSerial();
@@ -45,7 +45,7 @@ void setup()
   //Begin serial communication with Arduino and Arduino IDE (Serial Monitor)
   Serial.begin(9600);
   pinMode(A3, INPUT);
-pinMode(5, OUTPUT);
+  pinMode(5, OUTPUT);
   //Begin serial communication with Arduino and SIM800L
   mySerial.begin(9600);
   lcd.clear();
@@ -53,6 +53,10 @@ pinMode(5, OUTPUT);
   delay(1000);
   mySerial.println("AT"); //Once the handshake test is successful, it will back to OK
   updateSerial();
+  lcd.setCursor(2,0);
+  lcd.print("loading.....");
+  delay(3000);
+  lcd.clear();
 }
 
 void loop()
